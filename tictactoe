@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use TicTacToe\Core\Board;
+use TicTacToe\Core\Game;
+use TicTacToe\Core\GameState;
+use TicTacToe\Core\PlayerManager;
+use TicTacToe\Cli\Controller\GameController;
+use TicTacToe\Cli\View\GameView;
+
+$board = new Board();
+$state = new GameState();
+$playerManager = new PlayerManager();
+$game = new Game($board, $state, $playerManager);
+
+$view = new GameView($board, $state, $playerManager);
+$controller = new GameController($game, $view);
+
+$controller->start();
