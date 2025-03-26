@@ -32,7 +32,7 @@
 			"@test"
 		],
 		"post-install-cmd": [
-			"chmod +x bin/tictactoe"
+			"chmod +x bin/tictactoe || true"
 		],
 		"phpcs": "phpcs --standard=PSR12 src/",
 		"test": "phpunit",

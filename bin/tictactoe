@@ -1,21 +1,30 @@
 #!/usr/bin/env php
 <?php
 
-declare(strict_types=1);
-
-$autoloadPath = dirname(__DIR__, 3) . '/autoload.php';
-if (file_exists($autoloadPath)) {
-	require $autoloadPath;
-} else {
-	die("Error: autoload.php not found. Run 'composer install' first.");
-}
-
+use TicTacToe\Cli\Controller\GameController;
+use TicTacToe\Cli\View\GameView;
 use TicTacToe\Core\Board;
 use TicTacToe\Core\Game;
 use TicTacToe\Core\GameState;
 use TicTacToe\Core\PlayerManager;
-use TicTacToe\Cli\Controller\GameController;
-use TicTacToe\Cli\View\GameView;
+
+// Автозагрузка для Windows и Linux
+$autoloadPaths = [
+	__DIR__ . '/../../autoload.php',          // Для локальной установки
+	__DIR__ . '/../../../autoload.php',       // Для глобальной установки
+	__DIR__ . '/../vendor/autoload.php',      // Альтернативный путь
+];
+
+foreach ($autoloadPaths as $path) {
+	if (file_exists($path)) {
+		require $path;
+		break;
+	}
+}
+
+if (!class_exists(Game::class)) {
+	die("Error: Autoload failed. Run 'composer install' first.\n");
+}
 
 $board = new Board();
 $state = new GameState();
