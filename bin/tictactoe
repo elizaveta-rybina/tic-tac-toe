@@ -3,7 +3,12 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../vendor/autoload.php';
+$autoloadPath = dirname(__DIR__, 3) . '/autoload.php';
+if (file_exists($autoloadPath)) {
+	require $autoloadPath;
+} else {
+	die("Error: autoload.php not found. Run 'composer install' first.");
+}
 
 use TicTacToe\Core\Board;
 use TicTacToe\Core\Game;
