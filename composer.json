@@ -1,5 +1,5 @@
 {
-	"name": "elizaveta/tic-tac-toe",
+	"name": "elizaveta-rybina/tic-tac-toe-php",
 	"description": "A simple console-based Tic-Tac-Toe game in PHP.",
 	"type": "project",
 	"autoload": {
